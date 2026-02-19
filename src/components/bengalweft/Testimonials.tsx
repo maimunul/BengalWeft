@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const testimonials = [
   {
@@ -48,9 +49,11 @@ const Testimonials = () => {
 
   const t = testimonials[current];
 
+  const { ref, visible } = useScrollReveal();
+
   return (
     <section className="py-24 px-6 bg-gradient-navy">
-      <div className="max-w-4xl mx-auto">
+      <div ref={ref} className={`max-w-4xl mx-auto transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <div className="text-center mb-16">
           <p className="inline-block text-sm font-semibold uppercase tracking-widest text-gold mb-3">
             Testimonials

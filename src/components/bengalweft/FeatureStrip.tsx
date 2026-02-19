@@ -1,4 +1,5 @@
 import { Users, CheckCircle, Headphones } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const features = [
   {
@@ -19,8 +20,10 @@ const features = [
 ];
 
 const FeatureStrip = () => {
+  const { ref, visible } = useScrollReveal(0.3);
+
   return (
-    <section className="relative z-10 -mt-12 mx-4 md:mx-auto max-w-5xl">
+    <section ref={ref} className={`relative z-10 -mt-12 mx-4 md:mx-auto max-w-5xl transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
       <div className="bg-white rounded-2xl shadow-lg-custom border border-border grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border">
         {features.map(({ icon: Icon, title, desc }) => (
           <div key={title} className="flex items-center gap-4 p-6 md:p-8">

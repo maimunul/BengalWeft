@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MapPin, Phone, Mail, Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
@@ -43,9 +44,11 @@ const Contact = () => {
     { icon: Mail, label: "Email", value: "info@bengalweft.com" },
   ];
 
+  const { ref, visible } = useScrollReveal();
+
   return (
     <section id="contact" className="py-24 px-6 bg-background">
-      <div className="max-w-6xl mx-auto">
+      <div ref={ref} className={`max-w-6xl mx-auto transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <div className="text-center mb-16">
           <p className="section-label">Get In Touch</p>
           <h2 className="section-title">Let's Work Together</h2>

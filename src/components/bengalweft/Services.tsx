@@ -44,10 +44,14 @@ const services = [
   },
 ];
 
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+
 const Services = () => {
+  const { ref, visible } = useScrollReveal();
+
   return (
     <section id="services" className="py-24 px-6 bg-secondary/30">
-      <div className="max-w-6xl mx-auto">
+      <div ref={ref} className={`max-w-6xl mx-auto transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <div className="text-center mb-16">
           <p className="section-label">What We Offer</p>
           <h2 className="section-title">Our Core Services</h2>
