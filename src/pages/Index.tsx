@@ -9,6 +9,7 @@ import Testimonials from "@/components/bengalweft/Testimonials";
 import FAQ from "@/components/bengalweft/FAQ";
 import Contact from "@/components/bengalweft/Contact";
 import Footer from "@/components/bengalweft/Footer";
+import FloatingButtons from "@/components/bengalweft/FloatingButtons";
 
 const Index = () => {
   return (
@@ -24,6 +25,7 @@ const Index = () => {
       <FAQ />
       <Contact />
       <Footer />
+      <FloatingButtons />
     </div>
   );
 };
