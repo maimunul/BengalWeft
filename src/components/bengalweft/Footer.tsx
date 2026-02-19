@@ -1,4 +1,5 @@
 import { MapPin, Phone, Mail, Facebook, Linkedin, Instagram } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const scrollTo = (id: string) => {
@@ -60,6 +61,11 @@ const Footer = () => {
                   </button>
                 </li>
               ))}
+              <li>
+                <Link to="/catalogue" className="text-white/70 hover:text-gold text-sm transition-colors duration-200">
+                  → Product Catalogue
+                </Link>
+              </li>
             </ul>
           </div>
 
