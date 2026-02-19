@@ -1,12 +1,29 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Navbar from "@/components/bengalweft/Navbar";
+import Hero from "@/components/bengalweft/Hero";
+import FeatureStrip from "@/components/bengalweft/FeatureStrip";
+import About from "@/components/bengalweft/About";
+import Stats from "@/components/bengalweft/Stats";
+import Services from "@/components/bengalweft/Services";
+import Portfolio from "@/components/bengalweft/Portfolio";
+import Testimonials from "@/components/bengalweft/Testimonials";
+import FAQ from "@/components/bengalweft/FAQ";
+import Contact from "@/components/bengalweft/Contact";
+import Footer from "@/components/bengalweft/Footer";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen">
+      <Navbar />
+      <Hero />
+      <FeatureStrip />
+      <About />
+      <Stats />
+      <Services />
+      <Portfolio />
+      <Testimonials />
+      <FAQ />
+      <Contact />
+      <Footer />
     </div>
   );
 };
