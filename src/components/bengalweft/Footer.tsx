@@ -75,7 +75,14 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-gold mt-0.5 flex-shrink-0" />
-                <span className="text-white/70 text-sm">1284 Askarabad, Mistripada, Chittagong, Bangladesh</span>
+                <a
+                  href="https://maps.app.goo.gl/8R6trvqeWWNV5sui9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/70 hover:text-gold text-sm transition-colors"
+                >
+                  1284 Askarabad, Mistripada, Chittagong, Bangladesh
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-gold flex-shrink-0" />

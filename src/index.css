@@ -111,6 +111,12 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* GPU-accelerated scroll reveal */
+.scroll-reveal {
+  will-change: opacity, transform;
 }
 
 /* Custom scrollbar */

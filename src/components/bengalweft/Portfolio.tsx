@@ -132,7 +132,7 @@ const Portfolio = () => {
 
   return (
     <section id="projects" className="py-24 px-6 bg-background">
-      <div ref={ref} className={`max-w-6xl mx-auto transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+      <div ref={ref} className={`max-w-6xl mx-auto scroll-reveal transition-all duration-500 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
         <div className="text-center mb-12">
           <p className="section-label">Our Work</p>
           <h2 className="section-title">Latest Projects</h2>
@@ -169,6 +169,7 @@ const Portfolio = () => {
                 <img
                   src={project.imgUrl}
                   alt={project.title}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent" />

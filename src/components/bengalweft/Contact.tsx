@@ -48,7 +48,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-24 px-6 bg-background">
-      <div ref={ref} className={`max-w-6xl mx-auto transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+      <div ref={ref} className={`max-w-6xl mx-auto scroll-reveal transition-all duration-500 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
         <div className="text-center mb-16">
           <p className="section-label">Get In Touch</p>
           <h2 className="section-title">Let's Work Together</h2>
@@ -78,11 +78,19 @@ const Contact = () => {
             <div className="rounded-2xl overflow-hidden shadow-card h-48 bg-secondary flex items-center justify-center">
               <iframe
                 title="BengalWeft Location"
-                src="https://maps.google.com/maps?q=Chittagong,Bangladesh&t=&z=10&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=22.3569,91.7832&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 className="w-full h-full border-0"
                 allowFullScreen
                 loading="lazy"
               />
+              <a
+                href="https://maps.app.goo.gl/8R6trvqeWWNV5sui9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block mt-3 text-center text-sm text-gold font-semibold hover:underline"
+              >
+                View on Google Maps →
+              </a>
             </div>
           </div>
 
