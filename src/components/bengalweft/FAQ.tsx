@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const faqs = [
   {
@@ -30,10 +31,11 @@ const faqs = [
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const { ref, visible } = useScrollReveal();
 
   return (
     <section className="py-24 px-6 bg-secondary/30">
-      <div className="max-w-4xl mx-auto">
+      <div ref={ref} className={`max-w-4xl mx-auto transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <div className="text-center mb-16">
           <p className="section-label">FAQ</p>
           <h2 className="section-title">Frequently Asked Questions</h2>

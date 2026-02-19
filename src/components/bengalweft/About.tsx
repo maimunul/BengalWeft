@@ -1,5 +1,6 @@
 import aboutImg from "@/assets/about.jpg";
 import { CheckCircle2 } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const highlights = [
   "Premium fabric sourcing from trusted global suppliers",
@@ -10,9 +11,11 @@ const highlights = [
 ];
 
 const About = () => {
+  const { ref, visible } = useScrollReveal();
+
   return (
     <section id="about" className="py-24 px-6 bg-background">
-      <div className="max-w-6xl mx-auto">
+      <div ref={ref} className={`max-w-6xl mx-auto transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Image */}
           <div className="relative">
