@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 type Category = "all" | "men" | "women" | "kids" | "innerwear";
 
@@ -187,6 +188,16 @@ const Portfolio = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* View Full Catalogue CTA */}
+        <div className="text-center mt-12">
+          <Link
+            to="/catalogue"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-gold text-navy font-semibold rounded shadow-gold hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
+          >
+            View Full Catalogue →
+          </Link>
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Phone, Mail, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,6 +31,7 @@ const Navbar = () => {
     { label: "About", href: "#about" },
     { label: "Services", href: "#services" },
     { label: "Projects", href: "#projects" },
+    { label: "Catalogue", href: "/catalogue", isPage: true },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -95,18 +97,31 @@ const Navbar = () => {
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <button
-                key={link.label}
-                onClick={() => scrollTo(link.href)}
-                className={`text-sm font-medium transition-colors duration-200 relative group ${
-                  scrolled ? "text-navy hover:text-gold" : "text-white/90 hover:text-gold"
-                } ${activeSection === link.href.replace("#", "") ? "text-gold" : ""}`}
-              >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold group-hover:w-full transition-all duration-300" />
-              </button>
-            ))}
+            {navLinks.map((link) =>
+              (link as any).isPage ? (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  className={`text-sm font-medium transition-colors duration-200 relative group ${
+                    scrolled ? "text-navy hover:text-gold" : "text-white/90 hover:text-gold"
+                  }`}
+                >
+                  {link.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold group-hover:w-full transition-all duration-300" />
+                </Link>
+              ) : (
+                <button
+                  key={link.label}
+                  onClick={() => scrollTo(link.href)}
+                  className={`text-sm font-medium transition-colors duration-200 relative group ${
+                    scrolled ? "text-navy hover:text-gold" : "text-white/90 hover:text-gold"
+                  } ${activeSection === link.href.replace("#", "") ? "text-gold" : ""}`}
+                >
+                  {link.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold group-hover:w-full transition-all duration-300" />
+                </button>
+              )
+            )}
             <button
               onClick={() => scrollTo("#contact")}
               className="ml-4 px-5 py-2 bg-gradient-gold text-navy font-semibold text-sm rounded shadow-gold hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
@@ -128,15 +143,26 @@ const Navbar = () => {
         {isOpen && (
           <div className="lg:hidden bg-navy border-t border-white/10">
             <div className="px-6 py-4 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <button
-                  key={link.label}
-                  onClick={() => scrollTo(link.href)}
-                  className="text-white/90 hover:text-gold text-left text-sm font-medium py-1 transition-colors"
-                >
-                  {link.label}
-                </button>
-              ))}
+              {navLinks.map((link) =>
+                (link as any).isPage ? (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    className="text-white/90 hover:text-gold text-left text-sm font-medium py-1 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <button
+                    key={link.label}
+                    onClick={() => scrollTo(link.href)}
+                    className="text-white/90 hover:text-gold text-left text-sm font-medium py-1 transition-colors"
+                  >
+                    {link.label}
+                  </button>
+                )
+              )}
               <button
                 onClick={() => scrollTo("#contact")}
                 className="mt-2 px-5 py-2.5 bg-gradient-gold text-navy font-semibold text-sm rounded text-center"
