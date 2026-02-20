@@ -75,19 +75,20 @@ const Contact = () => {
             </div>
 
             {/* Map embed placeholder */}
-            <div className="rounded-2xl overflow-hidden shadow-card h-48 bg-secondary flex items-center justify-center">
+            <div className="rounded-2xl overflow-hidden shadow-card bg-secondary">
               <iframe
                 title="BengalWeft Location"
-                src="https://maps.google.com/maps?q=22.3569,91.7832&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                className="w-full h-full border-0"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3690.447405589503!2d91.8116695!3d22.336729300000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x261be956ce218187%3A0x918f8767bab59c96!2sBengalWeft!5e0!3m2!1sen!2sbd!4v1771570847584!5m2!1sen!2sbd"
+                className="w-full h-48 border-0"
                 allowFullScreen
                 loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
               />
               <a
                 href="https://maps.app.goo.gl/8R6trvqeWWNV5sui9"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block mt-3 text-center text-sm text-gold font-semibold hover:underline"
+                className="block py-3 text-center text-sm text-gold font-semibold hover:underline"
               >
                 View on Google Maps →
               </a>
