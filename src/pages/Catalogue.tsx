@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Send, Filter } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import FloatingButtons from "@/components/bengalweft/FloatingButtons";
+import logo from "@/assets/bengalweft-logo.jpeg";
 
 type Category = "all" | "men" | "women" | "kids" | "innerwear" | "activewear";
 
@@ -207,9 +208,11 @@ const Catalogue = () => {
       <header className="bg-gradient-navy text-white">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-gradient-gold rounded flex items-center justify-center">
-              <span className="text-navy font-bold text-sm font-serif">BW</span>
-            </div>
+            <img
+              src={logo}
+              alt="BengalWeft"
+              className="w-9 h-9 object-contain"
+            />
             <span className="text-xl font-bold tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
               Bengal<span className="text-gold">Weft</span>
             </span>
@@ -361,3 +364,5 @@ const Catalogue = () => {
 };
 
 export default Catalogue;
+
+
