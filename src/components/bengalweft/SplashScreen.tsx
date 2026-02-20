@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import logo from "@/assets/bengalweft-logo.jpeg";
 
 const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
   const [phase, setPhase] = useState<"enter" | "hold" | "exit">("enter");
@@ -22,11 +23,7 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
         }`}
       >
         {/* Logo mark */}
-        <div className="w-20 h-20 bg-gradient-gold rounded-xl flex items-center justify-center mb-6 shadow-gold">
-          <span className="text-navy font-bold text-2xl" style={{ fontFamily: "'Playfair Display', serif" }}>
-            BW
-          </span>
-        </div>
+        <img src={logo} alt="BengalWeft Logo" className="w-20 h-20 rounded-xl mb-6 shadow-gold object-cover" />
         {/* Brand name */}
         <h1
           className="text-4xl md:text-5xl font-bold text-white tracking-tight"

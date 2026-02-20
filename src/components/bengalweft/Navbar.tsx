@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Phone, Mail, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
+import logo from "@/assets/bengalweft-logo.jpeg";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -80,9 +81,7 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
           {/* Logo */}
           <button onClick={() => scrollTo("#home")} className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-gradient-gold rounded flex items-center justify-center">
-              <span className="text-navy font-bold text-sm font-serif">BW</span>
-            </div>
+            <img src={logo} alt="BengalWeft Logo" className="w-9 h-9 rounded object-cover" />
             <div>
               <span
                 className={`text-xl font-bold tracking-tight transition-colors ${
