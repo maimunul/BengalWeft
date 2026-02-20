@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { Users, Smile, FolderOpen, Layers } from "lucide-react";
 
 const stats = [
-  { icon: Users, value: 13, label: "Expert Workers", suffix: "+" },
+  { icon: Users, value: 100, label: "Expert Workers", suffix: "+" },
   { icon: Smile, value: 25, label: "Happy Clients", suffix: "+" },
   { icon: FolderOpen, value: 78, label: "Completed Projects", suffix: "+" },
-  { icon: Layers, value: 5, label: "Running Projects", suffix: "" },
+  { icon: Layers, value:10, label: "Running Projects", suffix: "" },
 ];
 
 const useCountUp = (target: number, duration = 1800, start = false) => {
