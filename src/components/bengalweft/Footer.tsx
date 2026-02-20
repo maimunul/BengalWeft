@@ -1,6 +1,6 @@
 import { MapPin, Phone, Mail, Facebook, Linkedin, Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
-
+import logo from "@/assets/bengalweft-logo.jpeg";
 const Footer = () => {
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -13,9 +13,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-9 h-9 bg-gradient-gold rounded flex items-center justify-center">
-                <span className="text-navy font-bold text-sm">BW</span>
-              </div>
+              <img src={logo} alt="BengalWeft Logo" className="w-9 h-9 rounded object-cover" />
               <span className="text-2xl font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>
                 Bengal<span className="text-gold">Weft</span>
               </span>
