@@ -40,7 +40,7 @@ const Contact = () => {
       label: "Location",
       value: "1284 Askarabad, Mistripada, Dewanhut, Chittagong, Bangladesh",
     },
-    { icon: Phone, label: "Phone", value: "+880 1302 185808" },
+    { icon: Phone, label: "Phone", value: "+880 1302 185808, +8801875223311, +8801751577058" },
     { icon: Mail, label: "Email", value: "info@bengalweft.com" },
   ];
 
