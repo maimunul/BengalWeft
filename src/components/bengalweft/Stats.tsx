@@ -3,8 +3,8 @@ import { Users, Smile, FolderOpen, Layers } from "lucide-react";
 
 const stats = [
   { icon: Users, value: 100, label: "Expert Workers", suffix: "+" },
-  { icon: Smile, value: 25, label: "Happy Clients", suffix: "+" },
-  { icon: FolderOpen, value: 78, label: "Completed Projects", suffix: "+" },
+  { icon: Smile, value: 10, label: "Happy Clients", suffix: "+" },
+  { icon: FolderOpen, value: 50, label: "Completed Projects", suffix: "+" },
   { icon: Layers, value:10, label: "Running Projects", suffix: "" },
 ];
 
