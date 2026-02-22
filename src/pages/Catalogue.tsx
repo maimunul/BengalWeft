@@ -5,6 +5,15 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import FloatingButtons from "@/components/bengalweft/FloatingButtons";
 import logo from "@/assets/bengalweft-logo.jpeg";
 
+import productFilaTshirt from "@/assets/product-fila-tshirt.jpg";
+import productRegularPajama from "@/assets/product-regular-pajama.jpg";
+import productCatPajamaSet from "@/assets/product-cat-pajama-set.jpg";
+import productJockstrap from "@/assets/product-jockstrap.png";
+import productThong from "@/assets/product-thong.jpg";
+import productSpecialPajama from "@/assets/product-special-pajama.jpg";
+import productPremiumPajama from "@/assets/product-premium-pajama.jpg";
+import productJockstrapDetail from "@/assets/product-jockstrap-detail.jpg";
+
 type Category = "all" | "men" | "women" | "kids" | "innerwear" | "activewear";
 
 const categories: { key: Category; label: string }[] = [
@@ -29,7 +38,7 @@ const products = [
     category: "men" as Category,
     title: "Linen Lounge Set",
     desc: "Cotton linen casual set with Henley shirt and drawstring trousers. Relaxed fit.",
-    moq: "300 pcs",
+    moq: "500 pcs",
     fabric: "55% Linen, 45% Cotton",
     imgUrl: "https://images.unsplash.com/photo-1594938298603-c8148c4b4af7?w=500&h=600&fit=crop",
   },
@@ -37,7 +46,7 @@ const products = [
     category: "men" as Category,
     title: "Striped Co-Ord Set",
     desc: "Stand collar short sleeve shirt and matching trousers. Smart casual styling.",
-    moq: "300 pcs",
+    moq: "500 pcs",
     fabric: "100% Cotton Poplin",
     imgUrl: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500&h=600&fit=crop",
   },
@@ -61,15 +70,39 @@ const products = [
     category: "men" as Category,
     title: "Essential T-Shirt 3-Pack",
     desc: "Set of 3 solid round-neck t-shirts. Pre-shrunk, bio-washed finish.",
-    moq: "1000 pcs",
+    moq: "500 pcs",
     fabric: "100% Combed Cotton, 180 GSM",
     imgUrl: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=600&fit=crop",
+  },
+  {
+    category: "men" as Category,
+    title: "Regular Pajama",
+    desc: "Classic white regular-fit pajama in micro cotton spandex. Elastic waist with back pocket.",
+    moq: "500 pcs",
+    fabric: "95% Cotton, 5% Spandex Micro",
+    imgLocal: productRegularPajama,
+  },
+  {
+    category: "men" as Category,
+    title: "Special Pleat Pajama",
+    desc: "Special pajama with front pleat detailing. Premium micro cotton spandex fabric.",
+    moq: "500 pcs",
+    fabric: "95% Cotton, 5% Spandex Micro",
+    imgLocal: productSpecialPajama,
+  },
+  {
+    category: "men" as Category,
+    title: "Premium Twill Pajama",
+    desc: "Premium pajama in twill cotton spandex fabric for superior comfort and durability.",
+    moq: "500 pcs",
+    fabric: "97% Cotton, 3% Spandex Twill",
+    imgLocal: productPremiumPajama,
   },
   {
     category: "women" as Category,
     title: "Satin Pajama Set",
     desc: "Luxe satin shirt and bottoms with contrasting piping trim. Gift-box ready.",
-    moq: "300 pcs",
+    moq: "500 pcs",
     fabric: "100% Polyester Satin",
     imgUrl: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&h=600&fit=crop",
   },
@@ -77,7 +110,7 @@ const products = [
     category: "women" as Category,
     title: "Knit Loungewear Set",
     desc: "Summer 2-piece set with short-sleeve top and wide-leg pants. Ultra soft.",
-    moq: "300 pcs",
+    moq: "500 pcs",
     fabric: "95% Viscose, 5% Elastane",
     imgUrl: "https://images.unsplash.com/photo-1594938298605-c8148c4b4af7?w=500&h=600&fit=crop",
   },
@@ -85,7 +118,7 @@ const products = [
     category: "women" as Category,
     title: "Crew Neck T-Shirt Pack",
     desc: "Women's slim fit basics in 3 versatile colors. Soft hand-feel fabric.",
-    moq: "1000 pcs",
+    moq: "500 pcs",
     fabric: "100% Supima Cotton, 160 GSM",
     imgUrl: "https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=500&h=600&fit=crop",
   },
@@ -93,7 +126,7 @@ const products = [
     category: "women" as Category,
     title: "Floral Midi Dress",
     desc: "Printed midi dress with puff sleeves and smocked bodice. Available in 4 prints.",
-    moq: "300 pcs",
+    moq: "500 pcs",
     fabric: "100% Rayon Challis",
     imgUrl: "https://images.unsplash.com/photo-1512236258305-32d7f48ee8f6?w=500&h=600&fit=crop",
   },
@@ -112,6 +145,14 @@ const products = [
     moq: "500 pcs",
     fabric: "95% Cotton, 5% Spandex Rib",
     imgUrl: "https://images.unsplash.com/photo-1561861422-a549073e547a?w=500&h=600&fit=crop",
+  },
+  {
+    category: "women" as Category,
+    title: "Cat Sweatshirt Pajama Set",
+    desc: "Cozy cat-print long-sleeve sweatshirt paired with comfortable pajama bottoms.",
+    moq: "500 pcs",
+    fabric: "100% Cotton French Terry, 280 GSM",
+    imgLocal: productCatPajamaSet,
   },
   {
     category: "kids" as Category,
@@ -133,7 +174,7 @@ const products = [
     category: "kids" as Category,
     title: "Girls' Summer Dress",
     desc: "Lightweight floral dress with flutter sleeves. Perfect for warm weather.",
-    moq: "300 pcs",
+    moq: "500 pcs",
     fabric: "100% Cotton Voile",
     imgUrl: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=500&h=600&fit=crop",
   },
@@ -141,7 +182,7 @@ const products = [
     category: "innerwear" as Category,
     title: "Premium Cotton Briefs Pack",
     desc: "All-day comfort innerwear set in classic neutrals. Tagless design.",
-    moq: "1000 pcs",
+    moq: "500 pcs",
     fabric: "100% Combed Cotton, 200 GSM",
     imgUrl: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=500&h=600&fit=crop",
   },
@@ -149,7 +190,7 @@ const products = [
     category: "innerwear" as Category,
     title: "Sports Performance Briefs",
     desc: "Moisture-wicking active innerwear with anti-chafe flatlock seams.",
-    moq: "1000 pcs",
+    moq: "500 pcs",
     fabric: "90% Nylon, 10% Spandex",
     imgUrl: "https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=500&h=600&fit=crop",
   },
@@ -160,6 +201,30 @@ const products = [
     moq: "500 pcs",
     fabric: "60% Merino Wool, 40% Polyester",
     imgUrl: "https://images.unsplash.com/photo-1544441893-675973e31985?w=500&h=600&fit=crop",
+  },
+  {
+    category: "innerwear" as Category,
+    title: "Jockstrap Collection",
+    desc: "Premium jockstrap underwear in vibrant coral, mint, and pink with branded waistband.",
+    moq: "500 pcs",
+    fabric: "85% Nylon, 15% Spandex",
+    imgLocal: productJockstrap,
+  },
+  {
+    category: "innerwear" as Category,
+    title: "Jockstrap Detail View",
+    desc: "Athletic jockstrap with branded waistband, available in multiple colorways.",
+    moq: "500 pcs",
+    fabric: "85% Nylon, 15% Spandex",
+    imgLocal: productJockstrapDetail,
+  },
+  {
+    category: "innerwear" as Category,
+    title: "Thong Collection",
+    desc: "Fashionable thong underwear set in tie-dye and printed designs.",
+    moq: "500 pcs",
+    fabric: "92% Cotton, 8% Spandex",
+    imgLocal: productThong,
   },
   {
     category: "activewear" as Category,
@@ -181,9 +246,17 @@ const products = [
     category: "activewear" as Category,
     title: "Yoga Leggings & Bra Set",
     desc: "High-waist compression leggings with matching sports bra. Squat-proof.",
-    moq: "300 pcs",
+    moq: "500 pcs",
     fabric: "75% Nylon, 25% Spandex",
     imgUrl: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=500&h=600&fit=crop",
+  },
+  {
+    category: "activewear" as Category,
+    title: "FILA Mesh T-Shirt",
+    desc: "Sporty mesh panel t-shirt with embroidery details. Available in off-white and black.",
+    moq: "500 pcs",
+    fabric: "100% Polyester Mesh, 150 GSM",
+    imgLocal: productFilaTshirt,
   },
 ];
 
@@ -276,7 +349,7 @@ const Catalogue = () => {
                 {/* Image */}
                 <div className="relative h-64 overflow-hidden">
                   <img
-                    src={product.imgUrl}
+                    src={'imgLocal' in product ? (product as any).imgLocal : (product as any).imgUrl}
                     alt={product.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
