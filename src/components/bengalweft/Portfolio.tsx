@@ -19,8 +19,16 @@ import productGirlsDress from "@/assets/product-girls-dress.jpg";
 import productCottonInnerwear from "@/assets/product-cotton-innerwear.jpg";
 import productSportsInnerwear from "@/assets/product-sports-innerwear.jpg";
 import productThermal from "@/assets/product-thermal.jpg";
+import productFilaTshirt from "@/assets/product-fila-tshirt.jpg";
+import productRegularPajama from "@/assets/product-regular-pajama.jpg";
+import productCatPajamaSet from "@/assets/product-cat-pajama-set.jpg";
+import productJockstrap from "@/assets/product-jockstrap.png";
+import productThong from "@/assets/product-thong.jpg";
+import productSpecialPajama from "@/assets/product-special-pajama.jpg";
+import productPremiumPajama from "@/assets/product-premium-pajama.jpg";
+import productJockstrapDetail from "@/assets/product-jockstrap-detail.jpg";
 
-type Category = "all" | "men" | "women" | "kids" | "innerwear";
+type Category = "all" | "men" | "women" | "kids" | "innerwear" | "activewear";
 
 const filters: { key: Category; label: string }[] = [
   { key: "all", label: "All" },
@@ -28,6 +36,7 @@ const filters: { key: Category; label: string }[] = [
   { key: "women", label: "Women" },
   { key: "kids", label: "Kids" },
   { key: "innerwear", label: "Innerwear" },
+  { key: "activewear", label: "Activewear" },
 ];
 
 const projects = [
@@ -37,18 +46,26 @@ const projects = [
   { category: "men" as Category, title: "Denim Shirt Set", desc: "Striped button-down shirt paired with classic blue denim jeans, a versatile everyday set.", img: productDenimSet },
   { category: "men" as Category, title: "Tailored Trousers Set", desc: "Striped button-down shirt with tailored trousers, a smart-casual combination.", img: productTailored },
   { category: "men" as Category, title: "Unisex T-Shirt Pack", desc: "Set of 3 unisex solid round-neck t-shirts in maroon, white, and black colorways.", img: productTshirtPack },
+  { category: "activewear" as Category, title: "FILA Mesh T-Shirt", desc: "Sporty mesh panel t-shirt with embroidery details. Available in off-white and black.", img: productFilaTshirt },
   { category: "women" as Category, title: "Satin Pajama Set", desc: "H&M satin pajamas featuring a shirt and bottoms with contrasting piping trim.", img: productSatinPj },
   { category: "women" as Category, title: "Knit Loungewear", desc: "Women's summer 2-piece knit loungewear set with short-sleeve top and wide-leg pants.", img: productKnitLounge },
   { category: "women" as Category, title: "Crew Neck T-Shirt Set", desc: "Women's basic crew neck slim fit t-shirt set, essentials in three versatile colors.", img: productWomenTshirts },
   { category: "women" as Category, title: "Purple Pajama Set", desc: "Purple women's pajama set with short-sleeved button-down top and full-length pants.", img: productPurplePj },
   { category: "women" as Category, title: "Modal PJ Set", desc: "Amazon Essentials cotton modal long-sleeve shirt and full-length bottom pajama set.", img: productModalPj },
   { category: "women" as Category, title: "High-Neck Knit Tops", desc: "Teen girls' solid color high-neck tight-fitting knit tops in assorted colors.", img: productKnitTops },
+  { category: "women" as Category, title: "Cat Sweatshirt Pajama Set", desc: "Cozy cat-print long-sleeve sweatshirt paired with comfortable pajama bottoms.", img: productCatPajamaSet },
+  { category: "men" as Category, title: "Regular Pajama", desc: "Classic white regular-fit pajama crafted from micro cotton spandex fabric.", img: productRegularPajama },
+  { category: "men" as Category, title: "Special Pleat Pajama", desc: "Special pajama with front pleat detailing in premium micro cotton spandex.", img: productSpecialPajama },
+  { category: "men" as Category, title: "Premium Twill Pajama", desc: "Premium pajama in twill cotton spandex fabric for superior comfort and style.", img: productPremiumPajama },
   { category: "kids" as Category, title: "Kids Playwear Set", desc: "Comfortable and durable kids' playwear set suitable for everyday activities.", img: productKidsPlaywear },
   { category: "kids" as Category, title: "Boys' Casual Set", desc: "Stylish casual set for boys featuring breathable fabric and playful design.", img: productBoysCasual },
   { category: "kids" as Category, title: "Girls' Summer Dress", desc: "Light and flowy summer dress for girls with vibrant floral print.", img: productGirlsDress },
   { category: "innerwear" as Category, title: "Cotton Innerwear Set", desc: "Premium cotton innerwear set offering all-day comfort and softness.", img: productCottonInnerwear },
   { category: "innerwear" as Category, title: "Sports Innerwear", desc: "Moisture-wicking sports innerwear designed for active performance.", img: productSportsInnerwear },
   { category: "innerwear" as Category, title: "Thermal Base Layer", desc: "Warm and cozy thermal base layer set for cold weather comfort.", img: productThermal },
+  { category: "innerwear" as Category, title: "Jockstrap Collection", desc: "Premium jockstrap underwear in vibrant coral, mint, and pink colorways.", img: productJockstrap },
+  { category: "innerwear" as Category, title: "Jockstrap Detail", desc: "Athletic jockstrap with branded waistband, available in multiple colors.", img: productJockstrapDetail },
+  { category: "innerwear" as Category, title: "Thong Collection", desc: "Fashionable thong underwear set in tie-dye and printed designs.", img: productThong },
 ];
 
 const Portfolio = () => {
