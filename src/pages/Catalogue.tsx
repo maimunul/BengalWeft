@@ -1,10 +1,25 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Send, Filter } from "lucide-react";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import FloatingButtons from "@/components/bengalweft/FloatingButtons";
 import logo from "@/assets/bengalweft-logo.jpeg";
 
+// Local product images
+import productHoodie from "@/assets/product-hoodie.jpg";
+import productLinenSet from "@/assets/product-linen-set.jpg";
+import productStripedCoords from "@/assets/product-striped-coords.jpg";
+import productDenimSet from "@/assets/product-denim-set.jpg";
+import productTshirtPack from "@/assets/product-tshirt-pack.jpg";
+import productSatinPj from "@/assets/product-satin-pj.jpg";
+import productKnitLounge from "@/assets/product-knit-lounge.jpg";
+import productWomenTshirts from "@/assets/product-women-tshirts.jpg";
+import productKnitTops from "@/assets/product-knit-tops.jpg";
+import productKidsPlaywear from "@/assets/product-kids-playwear.jpg";
+import productBoysCasual from "@/assets/product-boys-casual.jpg";
+import productGirlsDress from "@/assets/product-girls-dress.jpg";
+import productCottonInnerwear from "@/assets/product-cotton-innerwear.jpg";
+import productSportsInnerwear from "@/assets/product-sports-innerwear.jpg";
+import productThermal from "@/assets/product-thermal.jpg";
 import productFilaTshirt from "@/assets/product-fila-tshirt.jpg";
 import productRegularPajama from "@/assets/product-regular-pajama.jpg";
 import productCatPajamaSet from "@/assets/product-cat-pajama-set.jpg";
@@ -13,6 +28,7 @@ import productThong from "@/assets/product-thong.jpg";
 import productSpecialPajama from "@/assets/product-special-pajama.jpg";
 import productPremiumPajama from "@/assets/product-premium-pajama.jpg";
 import productJockstrapDetail from "@/assets/product-jockstrap-detail.jpg";
+import productPurplePj from "@/assets/product-purple-pj.jpg";
 
 type Category = "all" | "men" | "women" | "kids" | "innerwear" | "activewear";
 
@@ -25,245 +41,45 @@ const categories: { key: Category; label: string }[] = [
   { key: "activewear", label: "Activewear" },
 ];
 
-const products = [
-  {
-    category: "men" as Category,
-    title: "Navy Oversized Hoodie",
-    desc: "Heavy cotton sweatshirt fabric, zip-through, oversized fit. Available in S–3XL.",
-    moq: "500 pcs",
-    fabric: "100% Cotton Fleece, 320 GSM",
-    imgUrl: "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&h=600&fit=crop",
-  },
-  {
-    category: "men" as Category,
-    title: "Linen Lounge Set",
-    desc: "Cotton linen casual set with Henley shirt and drawstring trousers. Relaxed fit.",
-    moq: "500 pcs",
-    fabric: "55% Linen, 45% Cotton",
-    imgUrl: "https://images.unsplash.com/photo-1594938298603-c8148c4b4af7?w=500&h=600&fit=crop",
-  },
-  {
-    category: "men" as Category,
-    title: "Striped Co-Ord Set",
-    desc: "Stand collar short sleeve shirt and matching trousers. Smart casual styling.",
-    moq: "500 pcs",
-    fabric: "100% Cotton Poplin",
-    imgUrl: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500&h=600&fit=crop",
-  },
-  {
-    category: "men" as Category,
-    title: "Classic Denim Shirt",
-    desc: "Button-down denim shirt in medium wash. Timeless design for everyday wear.",
-    moq: "500 pcs",
-    fabric: "100% Cotton Denim, 6oz",
-    imgUrl: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500&h=600&fit=crop",
-  },
-  {
-    category: "men" as Category,
-    title: "Tailored Chino Trousers",
-    desc: "Slim-fit chinos with stretch comfort. Available in 8 colors.",
-    moq: "500 pcs",
-    fabric: "98% Cotton, 2% Elastane Twill",
-    imgUrl: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=500&h=600&fit=crop",
-  },
-  {
-    category: "men" as Category,
-    title: "Essential T-Shirt 3-Pack",
-    desc: "Set of 3 solid round-neck t-shirts. Pre-shrunk, bio-washed finish.",
-    moq: "500 pcs",
-    fabric: "100% Combed Cotton, 180 GSM",
-    imgUrl: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=600&fit=crop",
-  },
-  {
-    category: "men" as Category,
-    title: "Regular Pajama",
-    desc: "Classic white regular-fit pajama in micro cotton spandex. Elastic waist with back pocket.",
-    moq: "500 pcs",
-    fabric: "95% Cotton, 5% Spandex Micro",
-    imgLocal: productRegularPajama,
-  },
-  {
-    category: "men" as Category,
-    title: "Special Pleat Pajama",
-    desc: "Special pajama with front pleat detailing. Premium micro cotton spandex fabric.",
-    moq: "500 pcs",
-    fabric: "95% Cotton, 5% Spandex Micro",
-    imgLocal: productSpecialPajama,
-  },
-  {
-    category: "men" as Category,
-    title: "Premium Twill Pajama",
-    desc: "Premium pajama in twill cotton spandex fabric for superior comfort and durability.",
-    moq: "500 pcs",
-    fabric: "97% Cotton, 3% Spandex Twill",
-    imgLocal: productPremiumPajama,
-  },
-  {
-    category: "women" as Category,
-    title: "Satin Pajama Set",
-    desc: "Luxe satin shirt and bottoms with contrasting piping trim. Gift-box ready.",
-    moq: "500 pcs",
-    fabric: "100% Polyester Satin",
-    imgUrl: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&h=600&fit=crop",
-  },
-  {
-    category: "women" as Category,
-    title: "Knit Loungewear Set",
-    desc: "Summer 2-piece set with short-sleeve top and wide-leg pants. Ultra soft.",
-    moq: "500 pcs",
-    fabric: "95% Viscose, 5% Elastane",
-    imgUrl: "https://images.unsplash.com/photo-1594938298605-c8148c4b4af7?w=500&h=600&fit=crop",
-  },
-  {
-    category: "women" as Category,
-    title: "Crew Neck T-Shirt Pack",
-    desc: "Women's slim fit basics in 3 versatile colors. Soft hand-feel fabric.",
-    moq: "500 pcs",
-    fabric: "100% Supima Cotton, 160 GSM",
-    imgUrl: "https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=500&h=600&fit=crop",
-  },
-  {
-    category: "women" as Category,
-    title: "Floral Midi Dress",
-    desc: "Printed midi dress with puff sleeves and smocked bodice. Available in 4 prints.",
-    moq: "500 pcs",
-    fabric: "100% Rayon Challis",
-    imgUrl: "https://images.unsplash.com/photo-1512236258305-32d7f48ee8f6?w=500&h=600&fit=crop",
-  },
-  {
-    category: "women" as Category,
-    title: "Modal Pajama Set",
-    desc: "Long-sleeve shirt and full-length bottom pajama set. Ultra-breathable.",
-    moq: "500 pcs",
-    fabric: "60% Modal, 40% Cotton",
-    imgUrl: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=500&h=600&fit=crop",
-  },
-  {
-    category: "women" as Category,
-    title: "High-Neck Knit Top",
-    desc: "Solid color tight-fitting knit top. Ribbed texture, assorted colors.",
-    moq: "500 pcs",
-    fabric: "95% Cotton, 5% Spandex Rib",
-    imgUrl: "https://images.unsplash.com/photo-1561861422-a549073e547a?w=500&h=600&fit=crop",
-  },
-  {
-    category: "women" as Category,
-    title: "Cat Sweatshirt Pajama Set",
-    desc: "Cozy cat-print long-sleeve sweatshirt paired with comfortable pajama bottoms.",
-    moq: "500 pcs",
-    fabric: "100% Cotton French Terry, 280 GSM",
-    imgLocal: productCatPajamaSet,
-  },
-  {
-    category: "kids" as Category,
-    title: "Kids Playwear Set",
-    desc: "Durable and comfortable everyday set with fun prints. Ages 2–10.",
-    moq: "500 pcs",
-    fabric: "100% Cotton Jersey, 180 GSM",
-    imgUrl: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=500&h=600&fit=crop",
-  },
-  {
-    category: "kids" as Category,
-    title: "Boys' Casual Polo Set",
-    desc: "Breathable polo shirt with cargo shorts. Playful design in 5 colorways.",
-    moq: "500 pcs",
-    fabric: "100% Cotton Pique",
-    imgUrl: "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=500&h=600&fit=crop",
-  },
-  {
-    category: "kids" as Category,
-    title: "Girls' Summer Dress",
-    desc: "Lightweight floral dress with flutter sleeves. Perfect for warm weather.",
-    moq: "500 pcs",
-    fabric: "100% Cotton Voile",
-    imgUrl: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=500&h=600&fit=crop",
-  },
-  {
-    category: "innerwear" as Category,
-    title: "Premium Cotton Briefs Pack",
-    desc: "All-day comfort innerwear set in classic neutrals. Tagless design.",
-    moq: "500 pcs",
-    fabric: "100% Combed Cotton, 200 GSM",
-    imgUrl: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=500&h=600&fit=crop",
-  },
-  {
-    category: "innerwear" as Category,
-    title: "Sports Performance Briefs",
-    desc: "Moisture-wicking active innerwear with anti-chafe flatlock seams.",
-    moq: "500 pcs",
-    fabric: "90% Nylon, 10% Spandex",
-    imgUrl: "https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=500&h=600&fit=crop",
-  },
-  {
-    category: "innerwear" as Category,
-    title: "Thermal Base Layer Set",
-    desc: "Warm base layer top and bottom for cold weather. Lightweight insulation.",
-    moq: "500 pcs",
-    fabric: "60% Merino Wool, 40% Polyester",
-    imgUrl: "https://images.unsplash.com/photo-1544441893-675973e31985?w=500&h=600&fit=crop",
-  },
-  {
-    category: "innerwear" as Category,
-    title: "Jockstrap Collection",
-    desc: "Premium jockstrap underwear in vibrant coral, mint, and pink with branded waistband.",
-    moq: "500 pcs",
-    fabric: "85% Nylon, 15% Spandex",
-    imgLocal: productJockstrap,
-  },
-  {
-    category: "innerwear" as Category,
-    title: "Jockstrap Detail View",
-    desc: "Athletic jockstrap with branded waistband, available in multiple colorways.",
-    moq: "500 pcs",
-    fabric: "85% Nylon, 15% Spandex",
-    imgLocal: productJockstrapDetail,
-  },
-  {
-    category: "innerwear" as Category,
-    title: "Thong Collection",
-    desc: "Fashionable thong underwear set in tie-dye and printed designs.",
-    moq: "500 pcs",
-    fabric: "92% Cotton, 8% Spandex",
-    imgLocal: productThong,
-  },
-  {
-    category: "activewear" as Category,
-    title: "Performance Jogger Set",
-    desc: "Zip-up track jacket with tapered joggers. Moisture-wicking tech fabric.",
-    moq: "500 pcs",
-    fabric: "88% Polyester, 12% Spandex",
-    imgUrl: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&h=600&fit=crop",
-  },
-  {
-    category: "activewear" as Category,
-    title: "Training Tank & Shorts",
-    desc: "Lightweight gym set with mesh ventilation panels. Quick dry technology.",
-    moq: "500 pcs",
-    fabric: "100% Recycled Polyester",
-    imgUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&h=600&fit=crop",
-  },
-  {
-    category: "activewear" as Category,
-    title: "Yoga Leggings & Bra Set",
-    desc: "High-waist compression leggings with matching sports bra. Squat-proof.",
-    moq: "500 pcs",
-    fabric: "75% Nylon, 25% Spandex",
-    imgUrl: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=500&h=600&fit=crop",
-  },
-  {
-    category: "activewear" as Category,
-    title: "FILA Mesh T-Shirt",
-    desc: "Sporty mesh panel t-shirt with embroidery details. Available in off-white and black.",
-    moq: "500 pcs",
-    fabric: "100% Polyester Mesh, 150 GSM",
-    imgLocal: productFilaTshirt,
-  },
+interface Product {
+  category: Category;
+  title: string;
+  desc: string;
+  moq: string;
+  fabric: string;
+  img: string;
+}
+
+const products: Product[] = [
+  { category: "men", title: "Navy Oversized Hoodie", desc: "Heavy cotton sweatshirt fabric, zip-through, oversized fit. Available in S–3XL.", moq: "500 pcs", fabric: "100% Cotton Fleece, 320 GSM", img: productHoodie },
+  { category: "men", title: "Linen Lounge Set", desc: "Cotton linen casual set with Henley shirt and drawstring trousers. Relaxed fit.", moq: "500 pcs", fabric: "55% Linen, 45% Cotton", img: productLinenSet },
+  { category: "men", title: "Striped Co-Ord Set", desc: "Stand collar short sleeve shirt and matching trousers. Smart casual styling.", moq: "500 pcs", fabric: "100% Cotton Poplin", img: productStripedCoords },
+  { category: "men", title: "Classic Denim Shirt", desc: "Button-down denim shirt in medium wash. Timeless design for everyday wear.", moq: "500 pcs", fabric: "100% Cotton Denim, 6oz", img: productDenimSet },
+  { category: "men", title: "Essential T-Shirt 3-Pack", desc: "Set of 3 solid round-neck t-shirts. Pre-shrunk, bio-washed finish.", moq: "500 pcs", fabric: "100% Combed Cotton, 180 GSM", img: productTshirtPack },
+  { category: "men", title: "Regular Pajama", desc: "Classic white regular-fit pajama in micro cotton spandex. Elastic waist with back pocket.", moq: "500 pcs", fabric: "95% Cotton, 5% Spandex Micro", img: productRegularPajama },
+  { category: "men", title: "Special Pleat Pajama", desc: "Special pajama with front pleat detailing. Premium micro cotton spandex fabric.", moq: "500 pcs", fabric: "95% Cotton, 5% Spandex Micro", img: productSpecialPajama },
+  { category: "men", title: "Premium Twill Pajama", desc: "Premium pajama in twill cotton spandex fabric for superior comfort and durability.", moq: "500 pcs", fabric: "97% Cotton, 3% Spandex Twill", img: productPremiumPajama },
+  { category: "women", title: "Satin Pajama Set", desc: "Luxe satin shirt and bottoms with contrasting piping trim. Gift-box ready.", moq: "500 pcs", fabric: "100% Polyester Satin", img: productSatinPj },
+  { category: "women", title: "Knit Loungewear Set", desc: "Summer 2-piece set with short-sleeve top and wide-leg pants. Ultra soft.", moq: "500 pcs", fabric: "95% Viscose, 5% Elastane", img: productKnitLounge },
+  { category: "women", title: "Crew Neck T-Shirt Pack", desc: "Women's slim fit basics in 3 versatile colors. Soft hand-feel fabric.", moq: "500 pcs", fabric: "100% Supima Cotton, 160 GSM", img: productWomenTshirts },
+  { category: "women", title: "Purple Pajama Set", desc: "Purple women's pajama set with short-sleeved button-down top and full-length pants.", moq: "500 pcs", fabric: "100% Cotton Poplin", img: productPurplePj },
+  { category: "women", title: "High-Neck Knit Top", desc: "Solid color tight-fitting knit top. Ribbed texture, assorted colors.", moq: "500 pcs", fabric: "95% Cotton, 5% Spandex Rib", img: productKnitTops },
+  { category: "women", title: "Cat Sweatshirt Pajama Set", desc: "Cozy cat-print long-sleeve sweatshirt paired with comfortable pajama bottoms.", moq: "500 pcs", fabric: "100% Cotton French Terry, 280 GSM", img: productCatPajamaSet },
+  { category: "kids", title: "Kids Playwear Set", desc: "Durable and comfortable everyday set with fun prints. Ages 2–10.", moq: "500 pcs", fabric: "100% Cotton Jersey, 180 GSM", img: productKidsPlaywear },
+  { category: "kids", title: "Boys' Casual Polo Set", desc: "Breathable polo shirt with cargo shorts. Playful design in 5 colorways.", moq: "500 pcs", fabric: "100% Cotton Pique", img: productBoysCasual },
+  { category: "kids", title: "Girls' Summer Dress", desc: "Lightweight floral dress with flutter sleeves. Perfect for warm weather.", moq: "500 pcs", fabric: "100% Cotton Voile", img: productGirlsDress },
+  { category: "innerwear", title: "Premium Cotton Briefs Pack", desc: "All-day comfort innerwear set in classic neutrals. Tagless design.", moq: "500 pcs", fabric: "100% Combed Cotton, 200 GSM", img: productCottonInnerwear },
+  { category: "innerwear", title: "Sports Performance Briefs", desc: "Moisture-wicking active innerwear with anti-chafe flatlock seams.", moq: "500 pcs", fabric: "90% Nylon, 10% Spandex", img: productSportsInnerwear },
+  { category: "innerwear", title: "Thermal Base Layer Set", desc: "Warm base layer top and bottom for cold weather. Lightweight insulation.", moq: "500 pcs", fabric: "60% Merino Wool, 40% Polyester", img: productThermal },
+  { category: "innerwear", title: "Jockstrap Collection", desc: "Premium jockstrap underwear in vibrant coral, mint, and pink with branded waistband.", moq: "500 pcs", fabric: "85% Nylon, 15% Spandex", img: productJockstrap },
+  { category: "innerwear", title: "Jockstrap Detail View", desc: "Athletic jockstrap with branded waistband, available in multiple colorways.", moq: "500 pcs", fabric: "85% Nylon, 15% Spandex", img: productJockstrapDetail },
+  { category: "innerwear", title: "Thong Collection", desc: "Fashionable thong underwear set in tie-dye and printed designs.", moq: "500 pcs", fabric: "92% Cotton, 8% Spandex", img: productThong },
+  { category: "activewear", title: "FILA Mesh T-Shirt", desc: "Sporty mesh panel t-shirt with embroidery details. Available in off-white and black.", moq: "500 pcs", fabric: "100% Polyester Mesh, 150 GSM", img: productFilaTshirt },
 ];
 
 const Catalogue = () => {
   const [active, setActive] = useState<Category>("all");
   const [quoteItem, setQuoteItem] = useState<string | null>(null);
-  const { ref, visible } = useScrollReveal();
 
   const filtered = active === "all" ? products : products.filter((p) => p.category === active);
 
@@ -281,19 +97,12 @@ const Catalogue = () => {
       <header className="bg-gradient-navy text-white">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
-            <img
-              src={logo}
-              alt="BengalWeft"
-              className="w-9 h-9 object-contain"
-            />
+            <img src={logo} alt="BengalWeft" className="w-9 h-9 object-contain" />
             <span className="text-xl font-bold tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
               Bengal<span className="text-gold">Weft</span>
             </span>
           </Link>
-          <Link
-            to="/"
-            className="flex items-center gap-2 text-sm text-white/80 hover:text-gold transition-colors"
-          >
+          <Link to="/" className="flex items-center gap-2 text-sm text-white/80 hover:text-gold transition-colors">
             <ArrowLeft className="w-4 h-4" />
             Back to Home
           </Link>
@@ -315,7 +124,7 @@ const Catalogue = () => {
 
       {/* Filters + Grid */}
       <section className="py-16 px-6">
-        <div ref={ref} className={`max-w-6xl mx-auto transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className="max-w-6xl mx-auto">
           {/* Category Filters */}
           <div className="flex items-center gap-3 mb-10 flex-wrap">
             <Filter className="w-4 h-4 text-muted-foreground" />
@@ -349,7 +158,7 @@ const Catalogue = () => {
                 {/* Image */}
                 <div className="relative h-64 overflow-hidden">
                   <img
-                    src={'imgLocal' in product ? (product as any).imgLocal : (product as any).imgUrl}
+                    src={product.img}
                     alt={product.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
@@ -437,5 +246,3 @@ const Catalogue = () => {
 };
 
 export default Catalogue;
-
-
