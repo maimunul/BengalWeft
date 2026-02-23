@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Send, Filter } from "lucide-react";
+import { ArrowLeft, Send, Filter, X } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import FloatingButtons from "@/components/bengalweft/FloatingButtons";
 import logo from "@/assets/bengalweft-logo.jpeg";
 
@@ -33,7 +34,7 @@ import productPurplePj from "@/assets/product-purple-pj.jpg";
 type Category = "all" | "men" | "women" | "kids" | "innerwear" | "activewear";
 
 const categories: { key: Category; label: string }[] = [
-  { key: "all", label: "All Products" },
+  { key: "all", label: "All" },
   { key: "men", label: "Men" },
   { key: "women", label: "Women" },
   { key: "kids", label: "Kids" },
@@ -80,6 +81,7 @@ const products: Product[] = [
 const Catalogue = () => {
   const [active, setActive] = useState<Category>("all");
   const [quoteItem, setQuoteItem] = useState<string | null>(null);
+  const [lightboxImg, setLightboxImg] = useState<{ src: string; title: string } | null>(null);
 
   const filtered = active === "all" ? products : products.filter((p) => p.category === active);
 
@@ -95,44 +97,44 @@ const Catalogue = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="bg-gradient-navy text-white">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3">
-            <img src={logo} alt="BengalWeft" className="w-9 h-9 object-contain" />
-            <span className="text-xl font-bold tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2 sm:gap-3">
+            <img src={logo} alt="BengalWeft" className="w-8 h-8 sm:w-9 sm:h-9 object-contain" />
+            <span className="text-lg sm:text-xl font-bold tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
               Bengal<span className="text-gold">Weft</span>
             </span>
           </Link>
-          <Link to="/" className="flex items-center gap-2 text-sm text-white/80 hover:text-gold transition-colors">
-            <ArrowLeft className="w-4 h-4" />
+          <Link to="/" className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-white/80 hover:text-gold transition-colors">
+            <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             Back to Home
           </Link>
         </div>
       </header>
 
       {/* Hero Banner */}
-      <section className="bg-navy py-16 px-6">
+      <section className="bg-navy py-10 sm:py-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-gold text-sm font-semibold uppercase tracking-[0.3em] mb-4">Product Catalogue</p>
-          <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
+          <p className="text-gold text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-3 sm:mb-4">Product Catalogue</p>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-3 sm:mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
             Our Garment Collections
           </h1>
-          <p className="text-white/70 max-w-2xl mx-auto">
-            Browse our full range of apparel categories. Each product can be customized to your brand specifications. Request a quote to get started.
+          <p className="text-white/70 max-w-2xl mx-auto text-sm sm:text-base px-2">
+            Browse our full range of apparel categories. Each product can be customized to your brand specifications.
           </p>
         </div>
       </section>
 
       {/* Filters + Grid */}
-      <section className="py-16 px-6">
+      <section className="py-10 sm:py-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           {/* Category Filters */}
-          <div className="flex items-center gap-3 mb-10 flex-wrap">
-            <Filter className="w-4 h-4 text-muted-foreground" />
+          <div className="flex items-center gap-2 sm:gap-3 mb-6 sm:mb-10 flex-wrap">
+            <Filter className="w-4 h-4 text-muted-foreground hidden sm:block" />
             {categories.map((c) => (
               <button
                 key={c.key}
                 onClick={() => setActive(c.key)}
-                className={`px-5 py-2 rounded-full text-sm font-semibold uppercase tracking-wide transition-all duration-200 ${
+                className={`px-3 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide transition-all duration-200 ${
                   active === c.key
                     ? "bg-gradient-gold text-navy shadow-gold"
                     : "bg-secondary text-muted-foreground hover:bg-navy hover:text-white"
@@ -144,19 +146,22 @@ const Catalogue = () => {
           </div>
 
           {/* Results count */}
-          <p className="text-muted-foreground text-sm mb-6">
+          <p className="text-muted-foreground text-xs sm:text-sm mb-4 sm:mb-6">
             Showing <span className="font-semibold text-foreground">{filtered.length}</span> products
           </p>
 
           {/* Product Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-8">
             {filtered.map((product) => (
               <div
                 key={`${product.category}-${product.title}`}
-                className="group bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-navy transition-all duration-300 hover:-translate-y-1 border border-border"
+                className="group bg-white rounded-xl md:rounded-2xl overflow-hidden shadow-card hover:shadow-navy transition-all duration-300 hover:-translate-y-1 border border-border"
               >
                 {/* Image */}
-                <div className="relative h-64 overflow-hidden">
+                <div
+                  className="relative h-36 sm:h-48 md:h-64 overflow-hidden cursor-pointer"
+                  onClick={() => setLightboxImg({ src: product.img, title: product.title })}
+                >
                   <img
                     src={product.img}
                     alt={product.title}
@@ -164,30 +169,30 @@ const Catalogue = () => {
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <span className="absolute top-4 right-4 px-3 py-1 bg-gold text-navy text-xs font-bold rounded-full capitalize">
+                  <span className="absolute top-2 right-2 md:top-4 md:right-4 px-2 md:px-3 py-0.5 md:py-1 bg-gold text-navy text-[10px] md:text-xs font-bold rounded-full capitalize">
                     {product.category}
                   </span>
                 </div>
 
                 {/* Details */}
-                <div className="p-6">
+                <div className="p-3 sm:p-4 md:p-6">
                   <h3
-                    className="font-bold text-navy text-lg mb-2 group-hover:text-gold transition-colors duration-200"
+                    className="font-bold text-navy text-xs sm:text-sm md:text-lg mb-1 sm:mb-2 group-hover:text-gold transition-colors duration-200 line-clamp-2"
                     style={{ fontFamily: "'Playfair Display', serif" }}
                   >
                     {product.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                  <p className="text-muted-foreground text-[10px] sm:text-xs md:text-sm leading-relaxed mb-2 sm:mb-4 line-clamp-2 md:line-clamp-3">
                     {product.desc}
                   </p>
 
                   {/* Specs */}
-                  <div className="flex flex-col gap-2 mb-5 text-xs">
-                    <div className="flex items-center justify-between bg-secondary/50 rounded-lg px-3 py-2">
+                  <div className="flex flex-col gap-1 sm:gap-2 mb-3 sm:mb-5 text-[10px] sm:text-xs">
+                    <div className="flex items-center justify-between bg-secondary/50 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2">
                       <span className="text-muted-foreground uppercase tracking-wider font-medium">Fabric</span>
-                      <span className="text-foreground font-semibold">{product.fabric}</span>
+                      <span className="text-foreground font-semibold text-right max-w-[55%] truncate">{product.fabric}</span>
                     </div>
-                    <div className="flex items-center justify-between bg-secondary/50 rounded-lg px-3 py-2">
+                    <div className="flex items-center justify-between bg-secondary/50 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2">
                       <span className="text-muted-foreground uppercase tracking-wider font-medium">MOQ</span>
                       <span className="text-foreground font-semibold">{product.moq}</span>
                     </div>
@@ -196,13 +201,13 @@ const Catalogue = () => {
                   {/* Quote Button */}
                   <button
                     onClick={() => handleQuote(product.title)}
-                    className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-gradient-navy text-white text-sm font-semibold rounded-lg shadow-navy hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
+                    className="w-full flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-3 bg-gradient-navy text-white text-[10px] sm:text-sm font-semibold rounded-lg shadow-navy hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
                   >
                     {quoteItem === product.title ? (
                       "Opening Email..."
                     ) : (
                       <>
-                        <Send className="w-4 h-4" />
+                        <Send className="w-3 h-3 sm:w-4 sm:h-4" />
                         Request a Quote
                       </>
                     )}
@@ -215,17 +220,17 @@ const Catalogue = () => {
       </section>
 
       {/* CTA */}
-      <section className="bg-gradient-navy py-16 px-6">
+      <section className="bg-gradient-navy py-10 sm:py-16 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-white mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
             Can't Find What You Need?
           </h2>
-          <p className="text-white/70 mb-8">
+          <p className="text-white/70 mb-6 sm:mb-8 text-sm sm:text-base">
             We specialize in custom garment production. Share your design and we'll bring it to life.
           </p>
           <a
             href="mailto:info@bengalweft.com?subject=Custom%20Product%20Inquiry"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-gold text-navy font-semibold rounded shadow-gold hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 bg-gradient-gold text-navy font-semibold rounded shadow-gold hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 text-sm sm:text-base"
           >
             <Send className="w-4 h-4" />
             Contact Us for Custom Orders
@@ -234,13 +239,41 @@ const Catalogue = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-navy py-6 px-6 text-center">
+      <footer className="bg-navy py-4 sm:py-6 px-4 sm:px-6 text-center">
         <p className="text-white/50 text-xs">
           © {new Date().getFullYear()} BengalWeft. All rights reserved.
         </p>
       </footer>
 
       <FloatingButtons />
+
+      {/* Lightbox Modal */}
+      <Dialog open={!!lightboxImg} onOpenChange={() => setLightboxImg(null)}>
+        <DialogContent className="max-w-[95vw] md:max-w-4xl p-0 bg-transparent border-none shadow-none [&>button]:hidden">
+          <div className="relative flex items-center justify-center">
+            <button
+              onClick={() => setLightboxImg(null)}
+              className="absolute top-2 right-2 md:top-4 md:right-4 z-10 w-8 h-8 md:w-10 md:h-10 bg-navy/80 hover:bg-navy text-white rounded-full flex items-center justify-center transition-colors"
+            >
+              <X className="w-4 h-4 md:w-5 md:h-5" />
+            </button>
+            {lightboxImg && (
+              <img
+                src={lightboxImg.src}
+                alt={lightboxImg.title}
+                className="max-h-[85vh] max-w-full object-contain rounded-lg"
+              />
+            )}
+            {lightboxImg && (
+              <div className="absolute bottom-0 left-0 right-0 bg-navy/80 text-white text-center py-2 md:py-3 rounded-b-lg">
+                <p className="text-sm md:text-base font-semibold" style={{ fontFamily: "'Playfair Display', serif" }}>
+                  {lightboxImg.title}
+                </p>
+              </div>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
