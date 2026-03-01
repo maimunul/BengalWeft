@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ArrowLeft, Send, Filter, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import FloatingButtons from "@/components/bengalweft/FloatingButtons";
@@ -83,6 +83,12 @@ const Catalogue = () => {
   const [quoteItem, setQuoteItem] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const touchStart = useRef<number | null>(null);
+  const { pathname } = useLocation();
+
+  // Scroll to top on page load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const filtered = active === "all" ? products : products.filter((p) => p.category === active);
 

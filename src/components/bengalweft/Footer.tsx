@@ -82,11 +82,16 @@ const Footer = () => {
                   1284 Askarabad, Mistripada, Chittagong, Bangladesh
                 </a>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-gold flex-shrink-0" />
-                <a href="tel:+8801824003003" className="text-white/70 hover:text-gold text-sm transition-colors">
-                  +880 1824 003003
-                </a>
+              <li className="flex items-start gap-3">
+                <Phone className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
+                <div className="flex flex-col">
+                  <a href="tel:+8801302185808" className="text-white/70 hover:text-gold text-sm transition-colors">
+                    +880 1302 185808
+                  </a>
+                  <a href="tel:+8801824003003" className="text-white/70 hover:text-gold text-sm transition-colors">
+                    +880 1824 003003
+                  </a>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-gold flex-shrink-0" />
