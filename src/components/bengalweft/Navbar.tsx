@@ -55,7 +55,7 @@ const Navbar = () => {
             </div>
             <div className="flex items-center gap-2">
               <Phone className="w-3.5 h-3.5 text-gold" />
-              <span className="text-white/80">+880 1302 185808</span>
+              <span className="text-white/80">+880 1824 003003</span>
             </div>
             <div className="flex items-center gap-2">
               <Mail className="w-3.5 h-3.5 text-gold" />
