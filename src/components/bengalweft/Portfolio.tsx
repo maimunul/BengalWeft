@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Link } from "react-router-dom";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 import productHoodie from "@/assets/product-hoodie.jpg";
 import productLinenSet from "@/assets/product-linen-set.jpg";
@@ -71,10 +71,49 @@ const projects = [
 
 const Portfolio = () => {
   const [active, setActive] = useState<Category>("all");
-  const [lightboxImg, setLightboxImg] = useState<{ src: string; title: string } | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const { ref, visible } = useScrollReveal();
+  const touchStart = useRef<number | null>(null);
 
   const filtered = active === "all" ? projects : projects.filter((p) => p.category === active);
+
+  const openLightbox = (index: number) => setLightboxIndex(index);
+  const closeLightbox = () => setLightboxIndex(null);
+
+  const goNext = useCallback(() => {
+    if (lightboxIndex === null) return;
+    setLightboxIndex((lightboxIndex + 1) % filtered.length);
+  }, [lightboxIndex, filtered.length]);
+
+  const goPrev = useCallback(() => {
+    if (lightboxIndex === null) return;
+    setLightboxIndex((lightboxIndex - 1 + filtered.length) % filtered.length);
+  }, [lightboxIndex, filtered.length]);
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (lightboxIndex === null) return;
+      if (e.key === "ArrowRight") goNext();
+      if (e.key === "ArrowLeft") goPrev();
+      if (e.key === "Escape") closeLightbox();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [lightboxIndex, goNext, goPrev]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStart.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart.current === null) return;
+    const diff = touchStart.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? goNext() : goPrev();
+    }
+    touchStart.current = null;
+  };
+
+  const currentProject = lightboxIndex !== null ? filtered[lightboxIndex] : null;
 
   return (
     <>
@@ -93,7 +132,7 @@ const Portfolio = () => {
             {filters.map((f) => (
               <button
                 key={f.key}
-                onClick={() => setActive(f.key)}
+                onClick={() => { setActive(f.key); setLightboxIndex(null); }}
                 className={`px-4 md:px-6 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold uppercase tracking-wide transition-all duration-200 ${
                   active === f.key
                     ? "bg-gradient-gold text-navy shadow-gold"
@@ -107,11 +146,11 @@ const Portfolio = () => {
 
           {/* Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-            {filtered.map((project) => (
+            {filtered.map((project, idx) => (
               <div
                 key={`${project.category}-${project.title}`}
                 className="portfolio-item group relative rounded-xl md:rounded-2xl overflow-hidden shadow-card bg-white cursor-pointer"
-                onClick={() => setLightboxImg({ src: project.img, title: project.title })}
+                onClick={() => openLightbox(idx)}
               >
                 <div className="relative h-36 sm:h-48 md:h-64 overflow-hidden">
                   <img
@@ -149,27 +188,55 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* Lightbox Modal */}
-      <Dialog open={!!lightboxImg} onOpenChange={() => setLightboxImg(null)}>
-        <DialogContent className="max-w-[95vw] md:max-w-4xl p-0 bg-transparent border-none shadow-none [&>button]:hidden">
-          <div className="relative flex items-center justify-center">
+      {/* Lightbox Modal with Navigation */}
+      <Dialog open={lightboxIndex !== null} onOpenChange={closeLightbox}>
+        <DialogContent className="max-w-[100vw] max-h-[100vh] w-screen h-screen p-0 bg-black/95 border-none shadow-none [&>button]:hidden rounded-none">
+          <div
+            className="relative flex items-center justify-center w-full h-full"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            {/* Close */}
             <button
-              onClick={() => setLightboxImg(null)}
-              className="absolute top-2 right-2 md:top-4 md:right-4 z-10 w-8 h-8 md:w-10 md:h-10 bg-navy/80 hover:bg-navy text-white rounded-full flex items-center justify-center transition-colors"
+              onClick={closeLightbox}
+              className="absolute top-3 right-3 md:top-6 md:right-6 z-20 w-10 h-10 md:w-12 md:h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors"
             >
-              <X className="w-4 h-4 md:w-5 md:h-5" />
+              <X className="w-5 h-5 md:w-6 md:h-6" />
             </button>
-            {lightboxImg && (
+
+            {/* Prev */}
+            <button
+              onClick={goPrev}
+              className="absolute left-2 md:left-6 z-20 w-10 h-10 md:w-12 md:h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+            </button>
+
+            {/* Next */}
+            <button
+              onClick={goNext}
+              className="absolute right-2 md:right-6 z-20 w-10 h-10 md:w-12 md:h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors"
+            >
+              <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+            </button>
+
+            {/* Image */}
+            {currentProject && (
               <img
-                src={lightboxImg.src}
-                alt={lightboxImg.title}
-                className="max-h-[85vh] max-w-full object-contain rounded-lg"
+                src={currentProject.img}
+                alt={currentProject.title}
+                className="max-h-[80vh] max-w-[90vw] md:max-w-[80vw] object-contain select-none"
               />
             )}
-            {lightboxImg && (
-              <div className="absolute bottom-0 left-0 right-0 bg-navy/80 text-white text-center py-2 md:py-3 rounded-b-lg">
-                <p className="text-sm md:text-base font-semibold" style={{ fontFamily: "'Playfair Display', serif" }}>
-                  {lightboxImg.title}
+
+            {/* Caption + Counter */}
+            {currentProject && (
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent text-white text-center py-4 md:py-6 px-4">
+                <p className="text-sm md:text-lg font-semibold mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
+                  {currentProject.title}
+                </p>
+                <p className="text-xs md:text-sm text-white/60">
+                  {(lightboxIndex ?? 0) + 1} / {filtered.length}
                 </p>
               </div>
             )}
