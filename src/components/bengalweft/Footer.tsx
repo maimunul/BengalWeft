@@ -25,7 +25,7 @@ const Footer = () => {
             <div className="flex items-center gap-3">
               {[
                 { Icon: Facebook, href: "#" },
-                { Icon: Linkedin, href: "#" },
+                { Icon: Linkedin, href: "https://www.linkedin.com/company/bengalweft/?viewAsMember=true" },
                 { Icon: Instagram, href: "#" },
               ].map(({ Icon, href }, i) => (
                 <a
@@ -90,6 +90,9 @@ const Footer = () => {
                   </a>
                   <a href="tel:+8801824003003" className="text-white/70 hover:text-gold text-sm transition-colors">
                     +880 1824 003003
+                  </a>
+                  <a href="tel:+8801875223311" className="text-white/70 hover:text-gold text-sm transition-colors">
+                    +880 1875 223311
                   </a>
                 </div>
               </li>

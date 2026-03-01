@@ -103,7 +103,7 @@ const Hero = () => {
               }}
               className="px-8 py-3.5 border-2 border-white/60 text-white font-semibold rounded hover:border-gold hover:text-gold transition-all duration-200"
             >
-              Get a Quote
+              Get In Touch
             </a>
           </div>
         </div>
