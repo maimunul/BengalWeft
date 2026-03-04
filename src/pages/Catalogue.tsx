@@ -7,7 +7,6 @@ import logo from "@/assets/bengalweft-logo.jpeg";
 
 // Local product images
 import productHoodie from "@/assets/product-hoodie.jpg";
-import productLinenSet from "@/assets/product-linen-set.jpg";
 import productStripedCoords from "@/assets/product-striped-coords.jpg";
 import productDenimSet from "@/assets/product-denim-set.jpg";
 import productTshirtPack from "@/assets/product-tshirt-pack.jpg";
@@ -16,9 +15,7 @@ import productKnitLounge from "@/assets/product-knit-lounge.jpg";
 import productWomenTshirts from "@/assets/product-women-tshirts.jpg";
 import productKnitTops from "@/assets/product-knit-tops.jpg";
 import productKidsPlaywear from "@/assets/product-kids-playwear.jpg";
-import productBoysCasual from "@/assets/product-boys-casual.jpg";
 import productGirlsDress from "@/assets/product-girls-dress.jpg";
-import productCottonInnerwear from "@/assets/product-cotton-innerwear.jpg";
 import productSportsInnerwear from "@/assets/product-sports-innerwear.jpg";
 import productThermal from "@/assets/product-thermal.jpg";
 import productFilaTshirt from "@/assets/product-fila-tshirt.jpg";
@@ -30,6 +27,11 @@ import productSpecialPajama from "@/assets/product-special-pajama.jpg";
 import productPremiumPajama from "@/assets/product-premium-pajama.jpg";
 import productJockstrapDetail from "@/assets/product-jockstrap-detail.jpg";
 import productPurplePj from "@/assets/product-purple-pj.jpg";
+import productStylishTrousers from "@/assets/product-stylish-trousers.jpg";
+import productBootcutPants from "@/assets/product-bootcut-pants.jpg";
+import productSwimmingSet from "@/assets/product-swimming-set.jpg";
+import productWomensUnderwear from "@/assets/product-womens-underwear.jpg";
+import productWomensInnerSet from "@/assets/product-womens-inner-set.jpg";
 
 type Category = "all" | "men" | "women" | "kids" | "innerwear" | "activewear";
 
@@ -53,9 +55,9 @@ interface Product {
 
 const products: Product[] = [
   { category: "men", title: "Navy Oversized Hoodie", desc: "Heavy cotton sweatshirt fabric, zip-through, oversized fit. Available in S–3XL.", moq: "500 pcs", fabric: "100% Cotton Fleece, 320 GSM", img: productHoodie },
-  { category: "men", title: "Linen Lounge Set", desc: "Cotton linen casual set with Henley shirt and drawstring trousers. Relaxed fit.", moq: "500 pcs", fabric: "55% Linen, 45% Cotton", img: productLinenSet },
   { category: "men", title: "Striped Co-Ord Set", desc: "Stand collar short sleeve shirt and matching trousers. Smart casual styling.", moq: "500 pcs", fabric: "100% Cotton Poplin", img: productStripedCoords },
   { category: "men", title: "Classic Denim Shirt", desc: "Button-down denim shirt in medium wash. Timeless design for everyday wear.", moq: "500 pcs", fabric: "100% Cotton Denim, 6oz", img: productDenimSet },
+  { category: "men", title: "Stylish Trousers", desc: "Modern fit charcoal trousers with tapered cut. Perfect for smart-casual occasions.", moq: "500 pcs", fabric: "65% Polyester, 33% Viscose, 2% Elastane", img: productStylishTrousers },
   { category: "men", title: "Essential T-Shirt 3-Pack", desc: "Set of 3 solid round-neck t-shirts. Pre-shrunk, bio-washed finish.", moq: "500 pcs", fabric: "100% Combed Cotton, 180 GSM", img: productTshirtPack },
   { category: "men", title: "Regular Pajama", desc: "Classic white regular-fit pajama in micro cotton spandex. Elastic waist with back pocket.", moq: "500 pcs", fabric: "95% Cotton, 5% Spandex Micro", img: productRegularPajama },
   { category: "men", title: "Special Pleat Pajama", desc: "Special pajama with front pleat detailing. Premium micro cotton spandex fabric.", moq: "500 pcs", fabric: "95% Cotton, 5% Spandex Micro", img: productSpecialPajama },
@@ -66,16 +68,18 @@ const products: Product[] = [
   { category: "women", title: "Purple Pajama Set", desc: "Purple women's pajama set with short-sleeved button-down top and full-length pants.", moq: "500 pcs", fabric: "100% Cotton Poplin", img: productPurplePj },
   { category: "women", title: "High-Neck Knit Top", desc: "Solid color tight-fitting knit top. Ribbed texture, assorted colors.", moq: "500 pcs", fabric: "95% Cotton, 5% Spandex Rib", img: productKnitTops },
   { category: "women", title: "Cat Sweatshirt Pajama Set", desc: "Cozy cat-print long-sleeve sweatshirt paired with comfortable pajama bottoms.", moq: "500 pcs", fabric: "100% Cotton French Terry, 280 GSM", img: productCatPajamaSet },
+  { category: "women", title: "Boot-Cut Pants", desc: "Elegant high-waist navy boot-cut pants with flared silhouette for a polished look.", moq: "500 pcs", fabric: "72% Polyester, 25% Viscose, 3% Elastane", img: productBootcutPants },
   { category: "kids", title: "Kids Playwear Set", desc: "Durable and comfortable everyday set with fun prints. Ages 2–10.", moq: "500 pcs", fabric: "100% Cotton Jersey, 180 GSM", img: productKidsPlaywear },
-  { category: "kids", title: "Boys' Casual Polo Set", desc: "Breathable polo shirt with cargo shorts. Playful design in 5 colorways.", moq: "500 pcs", fabric: "100% Cotton Pique", img: productBoysCasual },
   { category: "kids", title: "Girls' Summer Dress", desc: "Lightweight floral dress with flutter sleeves. Perfect for warm weather.", moq: "500 pcs", fabric: "100% Cotton Voile", img: productGirlsDress },
-  { category: "innerwear", title: "Premium Cotton Briefs Pack", desc: "All-day comfort innerwear set in classic neutrals. Tagless design.", moq: "500 pcs", fabric: "100% Combed Cotton, 200 GSM", img: productCottonInnerwear },
+  { category: "innerwear", title: "Women's Underwear Set", desc: "Elegant cotton underwear in soft pastel colors for all-day comfort. Tagless design.", moq: "500 pcs", fabric: "95% Combed Cotton, 5% Spandex", img: productWomensUnderwear },
+  { category: "innerwear", title: "Women's Inner Full Set", desc: "Matching camisole top and shorts set in soft cotton. Everyday essential.", moq: "500 pcs", fabric: "100% Cotton Jersey, 180 GSM", img: productWomensInnerSet },
   { category: "innerwear", title: "Sports Performance Briefs", desc: "Moisture-wicking active innerwear with anti-chafe flatlock seams.", moq: "500 pcs", fabric: "90% Nylon, 10% Spandex", img: productSportsInnerwear },
   { category: "innerwear", title: "Thermal Base Layer Set", desc: "Warm base layer top and bottom for cold weather. Lightweight insulation.", moq: "500 pcs", fabric: "60% Merino Wool, 40% Polyester", img: productThermal },
   { category: "innerwear", title: "Jockstrap Collection", desc: "Premium jockstrap underwear in vibrant coral, mint, and pink with branded waistband.", moq: "500 pcs", fabric: "85% Nylon, 15% Spandex", img: productJockstrap },
   { category: "innerwear", title: "Jockstrap Detail View", desc: "Athletic jockstrap with branded waistband, available in multiple colorways.", moq: "500 pcs", fabric: "85% Nylon, 15% Spandex", img: productJockstrapDetail },
   { category: "innerwear", title: "Thong Collection", desc: "Fashionable thong underwear set in tie-dye and printed designs.", moq: "500 pcs", fabric: "92% Cotton, 8% Spandex", img: productThong },
-  { category: "activewear", title: "FILA Mesh T-Shirt", desc: "Sporty mesh panel t-shirt with embroidery details. Available in off-white and black.", moq: "500 pcs", fabric: "100% Polyester Mesh, 150 GSM", img: productFilaTshirt },
+  { category: "activewear", title: "Mesh Performance T-Shirt", desc: "Sporty mesh panel t-shirt with embroidery details. Available in off-white and black.", moq: "500 pcs", fabric: "100% Polyester Mesh, 150 GSM", img: productFilaTshirt },
+  { category: "activewear", title: "Swimming Set", desc: "Modern vibrant swimwear set with stylish design, perfect for beach and pool.", moq: "500 pcs", fabric: "80% Nylon, 20% Spandex", img: productSwimmingSet },
 ];
 
 const Catalogue = () => {
