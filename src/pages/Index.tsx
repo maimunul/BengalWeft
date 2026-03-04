@@ -14,9 +14,14 @@ import FloatingButtons from "@/components/bengalweft/FloatingButtons";
 import SplashScreen from "@/components/bengalweft/SplashScreen";
 
 const Index = () => {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(() => {
+    return !sessionStorage.getItem("splashShown");
+  });
 
-  const handleSplashComplete = useCallback(() => setShowSplash(false), []);
+  const handleSplashComplete = useCallback(() => {
+    sessionStorage.setItem("splashShown", "true");
+    setShowSplash(false);
+  }, []);
 
   return (
     <>
